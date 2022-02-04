@@ -31,7 +31,6 @@ void interruptCallback(int) {
     interrupted = true;
 }
 
-
 int main(int argc, char** argv) {
     std::string instructions = "Zeitkatze\n\n" 
         "\ttime cat -- literally\n\n"
@@ -42,10 +41,28 @@ int main(int argc, char** argv) {
         "Instructions:\n"
         "\tRun the executable to start measuring time.\n"
         "\t-- Ctr + c = Split time/lap time\n "
-        "\t-- Enter = Split time/lap time\n "
         "\t-- Ctr + d = Stop and exit\n"
-        "\t-- q = Stop and exit\n"
         "\t-- r = Reset current lap\n\n";
+
+    // TODO: write an arg parser class
+    bool argColorEnabled = true;
+    int argPrecision = 2;
+    char** arg = argv;
+    auto argEqual = [] (char** arg, const std::string& str) -> bool
+        { return !std::string(*arg).compare(str); };
+    while(--argc > 0)	{
+        if (argEqual(arg, "-n") || argEqual(arg, "--no-color"))
+            argColorEnabled = false;
+        if (argEqual(arg, "-p") || argEqual(arg, "--precision")) {
+            if (argc >= 1)
+                argPrecision = std::stoi(std::string(*++arg));
+        }
+        if (argEqual(arg, "-h") || argEqual(arg, "--help")) {
+            std::cout << instructions;
+            return 0;
+        }
+        arg++;
+    }
 
     color_enabled = argColorEnabled;
     auto z = std::make_unique<Zeitkatze>(color_enabled, argPrecision);
