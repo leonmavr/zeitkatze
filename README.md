@@ -2,6 +2,9 @@ zeitkatze
 =========
 
 Zeitkatze is time cat -- literally
+```
+=(^.^)= =(ˇ.ˇ)= =(o.o)m =(*.*)= =(^.^)= =(ˇ.ˇ)= =(o.o)m =(*.*)= =(^.^)= =(ˇ.ˇ)= =(o.o)m =(*.*)=
+```
 
 ## About
 What's the simplest stopwatch in a linux console?
@@ -18,7 +21,7 @@ And it has colors! Enabled by default, you can disable them with the environment
 `--color` or `-c` to enable colors, `--no-color` or `-n` to disable.
 
 
-## How to compile and run 
+## Compilation and usage
 To compile:
 ```
 cd zeitkatze
@@ -32,9 +35,12 @@ You can run it by simply running the executable. Colors are enabled by default a
 ```
 ./zeitkatze
 ```
+<img src="https://raw.githubusercontent.com/leonmavr/zeitkatze/master/assets/demo.gif" height="275" />
+
 It supports the following command line options
-| Short specifier | Long specifier            | Description                                                                                         |
-|:--------------- |:--------------------------|:----------------------------------------------------------------------------------------------------|
-| -n              | --no-color                |  Disables colors when formatting the times on the terminal                                          |   
-| -p              | --precision               |  How many decimal places to show when measuring time                                                | 
+
+| Short specifier | Long specifier            | Argument type | Default | Description                                                                              |
+|:--------------- |:--------------------------|:--------------|:--------|:-----------------------------------------------------------------------------------------|
+| -n              | --no-color                |  None         | On      |Disables colors when formatting the times on the terminal                                 |   
+| -p              | --precision               |  integer      | 2       |How many decimal places to show when measuring time                                       | 
                      
