@@ -35,21 +35,19 @@ extern std::ostream &operator<<(std::ostream &oss, Color c);
 class Zeitkatze : public ZeitkatzeBase {
 public:
   Zeitkatze()
-      : enable_color_(true), split_printed_(false), start_(steady_clock::now()),
-        last_lap_(start_), last_line_len_(0), precision_(2) {
+      : split_printed_(false), start_(steady_clock::now()), last_lap_(start_),
+        last_line_len_(0), precision_(2), enable_color_(true) {
     init(enable_color_);
   }
   Zeitkatze(bool enable_color)
-      : enable_color_(enable_color), split_printed_(false),
-        start_(steady_clock::now()), last_lap_(start_), last_line_len_(0),
-        precision_(2) {
-    init(enable_color);
+      : split_printed_(false), start_(steady_clock::now()), last_lap_(start_),
+        last_line_len_(0), precision_(2), enable_color_(enable_color) {
+    init(enable_color_);
   }
   Zeitkatze(bool enable_color, unsigned precision)
-      : enable_color_(enable_color), split_printed_(false),
-        start_(steady_clock::now()), last_lap_(start_), last_line_len_(0),
-        precision_(precision) {
-    init(enable_color);
+      : split_printed_(false), start_(steady_clock::now()), last_lap_(start_),
+        last_line_len_(0), precision_(precision), enable_color_(enable_color) {
+    init(enable_color_);
   }
   // implemented interface
   virtual void init(bool enable_color);
