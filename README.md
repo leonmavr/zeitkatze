@@ -31,7 +31,7 @@ To clean:
 ```
 make clean
 ```
-You can run it by simply running the executable. Colors are enabled by default and seconds are measured with a precision of two decimals:
+You can use it by simply running the executable. Colors are enabled by default and seconds are measured with a precision of two decimals:
 ```
 ./zeitkatze
 ```
