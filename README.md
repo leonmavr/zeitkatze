@@ -13,7 +13,7 @@ Zeitkatze is the same thing, with just a little extra.
 
 It continuously updates the total elapsed time display, you can hit ctrl-c once to display a split time,
 and if you quit (hitting ctrl-d, or ctrl-c twice in succession, or q), zeitkatze prints the total time and
-exits. You can measure a new split time (or "lap time") by pressing ctrl-c once.
+exits. You can measure a new split time (or "lap time") by pressing ctrl-c once or by hitting Enter.
 
 
 ## Compilation and usage
