@@ -48,3 +48,4 @@ It also supports configuration via the environment variable `ZEITKATZE_COLOR`. N
 - [ ] Option for one-line output
 - [ ] Unicode support
 - [ ] Fancier output with ncurses
+- [ ] Unit test it by sending signals to the app
