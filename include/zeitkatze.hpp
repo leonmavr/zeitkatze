@@ -55,8 +55,6 @@ public:
   // accessors
   bool enable_color() const { return enable_color_; }
   unsigned precision() const { return precision_; }
-  // TODO: private
-  CatVector read_cats(std::string cat_file = "cats.txt");
 
 private:
   // members
@@ -73,11 +71,12 @@ private:
   // how many decimals when formating seconds in Zeitkatze instance
   const unsigned precision_;
   bool enable_color_;
-  CatVector cats_emotes_default_ = {
+  CatVector read_cats(std::string cat_file = "cats.txt");
+  CatVector cats_emotes_default_ {
       "=(^.^)=", "=(o.o)=", "=(^.^)\"", "=(x.x)=", "=(o.o)m", " (o,o) ",
       "=(0.0)=", "=(@.@)=", "=(*.*)=",  "=(-.-)=", "=(v.v)=", "=(o.O)=",
       "=[˙.˙]=", "=(~.~)=", "=(ˇ.ˇ)=",  "=(=.=)="};
-  CatVector cat_emotes_{std::move(read_cats())};
+  CatVector cat_emotes_ {std::move(read_cats("cats.txt"))};
   // methods
   void print_time(const CatIndex cat_index, const Color color);
   void print_current_time();

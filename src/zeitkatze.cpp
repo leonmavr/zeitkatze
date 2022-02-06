@@ -108,6 +108,9 @@ void Zeitkatze::init(bool enable_color) {
     tio.c_cc[VTIME] = 0;
     tcsetattr(1, TCSANOW, &tio);
   }
+
+  // initialise some members
+  cat_emotes_ = {read_cats("cats.txt")};
 }
 
 void Zeitkatze::run() {
@@ -151,6 +154,7 @@ void Zeitkatze::run() {
   print_end_time();
   std::cout << std::endl;
 }
+
 
 CatVector Zeitkatze::read_cats(std::string cat_file) {
   std::ifstream file(cat_file);
