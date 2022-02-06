@@ -1,13 +1,15 @@
 #include "zeitkatze.hpp"
-#include <atomic>   // atomic<T>
-#include <chrono>   // chrono::duration, chrono::duration_cast
-#include <cmath>    // pow(), floor()
-#include <csignal>  // signal()
-#include <fcntl.h>  //fcntl()
-#include <iomanip>  // setw(), setfill()
-#include <iostream> // ostream()
-#include <memory>   // make_unique()
-#include <poll.h>   // poll()
+#include <atomic>     // atomic<T>
+#include <chrono>     // chrono::duration, chrono::duration_cast
+#include <cmath>      // pow(), floor()
+#include <csignal>    // signal()
+#include <fcntl.h>    //fcntl()
+#include <filesystem> // std::filesystem::absolute, C++17+
+#include <fstream>    // ifstream
+#include <iomanip>    // setw(), setfill()
+#include <iostream>   // ostream()
+#include <memory>     // make_unique()
+#include <poll.h>     // poll()
 #include <sstream>
 #include <string>    // string
 #include <termios.h> // struct termios, tcgetattr()
@@ -22,7 +24,7 @@ using std::chrono::duration_cast;
 void Zeitkatze::print_time(const CatIndex cat_index, const Color color) {
   steady_clock::time_point now(steady_clock::now());
   std::stringstream sbuf;
-  sbuf << Color::Cat_hold << kCats_[cat_index] << Color::Cat_hold << "   "
+  sbuf << Color::Cat_hold << cat_emotes_[cat_index] << Color::Cat_hold << "   "
        << color << format_seconds(elapsed()) << Color::Normal << "  ("
        << Color::Split_lap
        << format_seconds(
@@ -43,7 +45,7 @@ void Zeitkatze::print_current_time() {
     split_printed_ = false;
   }
   std::stringstream sbuf;
-  sbuf << Color::Cat << kCats_[0] << "   " << Color::Running
+  sbuf << Color::Cat << cat_emotes_[0] << "   " << Color::Running
        << format_seconds(elapsed()) << Color::Normal;
   if (had_lap_) {
     auto current_lap =
@@ -81,7 +83,7 @@ std::string Zeitkatze::format_seconds(double seconds) {
 }
 
 CatIndex Zeitkatze::some_cat_index() {
-  return static_cast<CatIndex>(elapsed() * 100) % (kCats_.size() - 2) + 1;
+  return static_cast<CatIndex>(elapsed() * 100) % (cat_emotes_.size() - 2) + 1;
 }
 
 void Zeitkatze::reset_laps() {
@@ -148,4 +150,18 @@ void Zeitkatze::run() {
     std::cout << std::endl;
   print_end_time();
   std::cout << std::endl;
+}
+
+CatVector Zeitkatze::read_cats(std::string cat_file) {
+  std::ifstream file(cat_file);
+  CatVector ret;
+  if (file.is_open()) {
+    std::string line;
+    while (std::getline(file, line))
+      ret.push_back(line);
+    file.close();
+  } else {
+    return cats_emotes_default_;
+  }
+  return ret;
 }
