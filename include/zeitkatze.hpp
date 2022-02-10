@@ -36,17 +36,19 @@ class Zeitkatze : public ZeitkatzeBase {
 public:
   Zeitkatze()
       : split_printed_(false), start_(steady_clock::now()), last_lap_(start_),
-        last_line_len_(0), precision_(2), enable_color_(true) {
+        last_line_len_(0), precision_(2), enable_color_(true), one_line_(true) {
     init(enable_color_);
   }
   Zeitkatze(bool enable_color)
       : split_printed_(false), start_(steady_clock::now()), last_lap_(start_),
-        last_line_len_(0), precision_(2), enable_color_(enable_color) {
+        last_line_len_(0), precision_(2), enable_color_(enable_color),
+        one_line_(true) {
     init(enable_color_);
   }
   Zeitkatze(bool enable_color, unsigned precision)
       : split_printed_(false), start_(steady_clock::now()), last_lap_(start_),
-        last_line_len_(0), precision_(precision), enable_color_(enable_color) {
+        last_line_len_(0), precision_(precision), enable_color_(enable_color),
+        one_line_(true) {
     init(enable_color_);
   }
   // implemented interface
@@ -72,11 +74,13 @@ private:
   const unsigned precision_;
   bool enable_color_;
   CatVector read_cats(std::string cat_file = "cats.txt");
-  CatVector cats_emotes_default_ {
+  CatVector cats_emotes_default_{
       "=(^.^)=", "=(o.o)=", "=(^.^)\"", "=(x.x)=", "=(o.o)m", " (o,o) ",
       "=(0.0)=", "=(@.@)=", "=(*.*)=",  "=(-.-)=", "=(v.v)=", "=(o.O)=",
       "=[˙.˙]=", "=(~.~)=", "=(ˇ.ˇ)=",  "=(=.=)="};
-  CatVector cat_emotes_ {std::move(read_cats("cats.txt"))};
+  CatVector cat_emotes_{std::move(read_cats("cats.txt"))};
+  // output the laps in one line instead of a scrolling screen
+  bool one_line_;
   // methods
   void print_time(const CatIndex cat_index, const Color color);
   void print_current_time();
