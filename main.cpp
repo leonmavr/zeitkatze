@@ -51,13 +51,15 @@ int main(int argc, char **argv) {
       "\ttime cat -- literally\n\n"
       "Arguments:\n"
       "[-n | --no-color] (default true) If passed, disables colours\n"
-      "[-p | --precision] (default 2) How many decimals to use when measuring "
-      "time\n"
+      "[-p | --precision] (default 2) How many decimals to use when measuring time\n"
+      "[-o | --one-line ] (default false) Whether or not to print the output in one line (as lap times)\n"
       "Wrong/Invalid argument prints usage message and exits\n\n"
       "Instructions:\n"
       "\tRun the executable to start measuring time.\n"
       "\t-- Ctr + c = Split time/lap time\n "
+      "\t-- Enter = Split time/lap time\n "
       "\t-- Ctr + d = Stop and exit\n"
+      "\t-- q = Stop and exit\n"
       "\t-- r = Reset current lap\n\n";
 
   // TODO: write an arg parser class
