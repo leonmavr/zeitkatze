@@ -63,6 +63,7 @@ int main(int argc, char **argv) {
   // TODO: write an arg parser class
   bool argColorEnabled = true;
   int argPrecision = 2;
+  bool argOneLine = false;
   char **arg = argv;
   auto argEqual = [](char **arg, const std::string &str) -> bool {
     return !std::string(*arg).compare(str);
@@ -74,6 +75,8 @@ int main(int argc, char **argv) {
       if (argc >= 1)
         argPrecision = std::stoi(std::string(*++arg));
     }
+    if (argEqual(arg, "-o") || argEqual(arg, "--one-line"))
+      argOneLine = true;
     if (argEqual(arg, "-h") || argEqual(arg, "--help")) {
       std::cout << instructions;
       return 0;
@@ -82,7 +85,7 @@ int main(int argc, char **argv) {
   }
 
   color_enabled = argColorEnabled;
-  auto z = std::make_unique<Zeitkatze>(color_enabled, argPrecision);
+  auto z = std::make_unique<Zeitkatze>(color_enabled, argPrecision, argOneLine);
   z->run();
   return 0;
 }

@@ -40,9 +40,11 @@ void Zeitkatze::print_time(const CatIndex cat_index, const Color color) {
 }
 
 void Zeitkatze::print_current_time() {
-  if (split_printed_) {
-    std::cout << std::endl;
-    split_printed_ = false;
+  if (!one_line_) {
+    if (split_printed_) {
+      std::cout << std::endl;
+      split_printed_ = false;
+    }
   }
   std::stringstream sbuf;
   sbuf << Color::Cat << cat_emotes_[0] << "   " << Color::Running
@@ -113,6 +115,7 @@ void Zeitkatze::init(bool enable_color) {
 void Zeitkatze::run() {
   pollfd fds[] = {{STDIN_FILENO, POLLIN, 0}};
   unsigned char x = 0;
+  auto clearScreen = []() { std::cout << "\x1b[H\x1b[J" << std::flush; };
   while (running_) {
     constexpr int timeout_ms = 42;
     if (poll(fds, 1, timeout_ms) == 1) {
@@ -120,6 +123,8 @@ void Zeitkatze::run() {
         switch (x) {
         case '\n':
         case '\r':
+          if (one_line_)
+            clearScreen();
           print_split_time();
           break;
         case 'r':
@@ -131,8 +136,10 @@ void Zeitkatze::run() {
         }
       }
     }
-    if (elapsed() - last_interrupt_ > kExitTimeout_)
-      print_current_time();
+    if (!one_line_) {
+      if (elapsed() - last_interrupt_ > kExitTimeout_)
+        print_current_time();
+    }
 
     if (interrupted) { // if we press Ctr+C^ twice with less time than
                        // kExitTimeout_ between them
