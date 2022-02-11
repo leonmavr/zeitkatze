@@ -38,14 +38,15 @@ It supports the following command line options
 |:--------------- |:--------------------------|:--------------|:--------|:-----------------------------------------------------------------------------------------|
 | -n              | --no-color                |  None         | On      |Disables colors when formatting the times on the terminal                                 |   
 | -p              | --precision               |  integer      | 2       |How many decimal places to show when measuring time                                       | 
+| -o              | --one-line                |  None         | Off     |Whether or not to print the output in one line - in this case only prints lap times       | 
 
 It also supports configuration via the environment variable `ZEITKATZE_COLOR`. Note that the option `-n` or `--no-color` overrides this variable. If `ZEITKATZE_COLOR` is set to 0 (e.g. by adding `ZEITKATZE_COLOR=0` in your rc), then colors are disabled. 
 
 ### Future ideas
 - [x] Measure seconds with custom precision
-- [ ] Read cat emoticons from file
+- [x] Read cat emoticons from file
 - [ ] Write times to file in a compact format
-- [ ] Option for one-line output
+- [x] Option for one-line output
 - [ ] Unicode support
 - [ ] Fancier output with ncurses
-- [ ] Unit test it by sending signals to the app
+- [ ] Unit test it by sending signals/keystrokes to the app
