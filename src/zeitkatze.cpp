@@ -3,6 +3,7 @@
 #include <chrono>     // chrono::duration, chrono::duration_cast
 #include <cmath>      // pow(), floor()
 #include <csignal>    // signal()
+#include <cstdlib>    // getenv
 #include <fcntl.h>    //fcntl()
 #include <filesystem> // std::filesystem::absolute, C++17+
 #include <fstream>    // ifstream
@@ -10,11 +11,10 @@
 #include <iostream>   // ostream()
 #include <memory>     // make_unique()
 #include <poll.h>     // poll()
-#include <sstream>
-#include <string>    // string
-#include <termios.h> // struct termios, tcgetattr()
-#include <unistd.h>  // read()
-#include <vector>    // vector<T>
+#include <string>     // string
+#include <termios.h>  // struct termios, tcgetattr()
+#include <unistd.h>   // read()
+#include <vector>     // vector<T>
 
 using std::setfill;
 using std::setw;
@@ -159,8 +159,9 @@ void Zeitkatze::Run() {
   std::cout << std::endl;
 }
 
-CatVector Zeitkatze::ReadCats(std::string cat_file) {
-  std::ifstream file(cat_file);
+CatVector Zeitkatze::ReadCats() {
+  std::string cat_filepath = dir_cat_emotes_ + file_cat_emotes_;
+  std::ifstream file(cat_filepath);
   CatVector ret;
   if (file.is_open()) {
     std::string line;
@@ -168,7 +169,25 @@ CatVector Zeitkatze::ReadCats(std::string cat_file) {
       ret.push_back(line);
     file.close();
   } else {
+    std::filesystem::create_directory(dir_cat_emotes_);
+    ResetEmotes();
+    // write cats to file ~/.config/zeitkatze
     return cats_emotes_default_;
   }
   return ret;
+}
+
+void Zeitkatze::ResetEmotes() {
+    std::filesystem::create_directory(dir_cat_emotes_);
+  std::string cat_filepath = dir_cat_emotes_ + file_cat_emotes_;
+  std::fstream file_to;
+  file_to.open(cat_filepath, std::ios::out | std::ios::trunc);
+  if (!file_to || file_to.fail())
+    throw std::runtime_error("FATAL: Cannot create file " + file_cat_emotes_ +
+                             " at " + dir_cat_emotes_);
+  else {
+    for (const auto &emote : cats_emotes_default_)
+      file_to << emote + "\n";
+    file_to.close();
+  }
 }

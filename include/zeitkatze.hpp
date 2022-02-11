@@ -62,6 +62,8 @@ public:
   // implemented interface
   virtual void Init(bool enable_color);
   virtual void Run();
+  // other public methods
+  void ResetEmotes();
   // accessors
   bool enable_color() const { return enable_color_; }
   unsigned precision() const { return precision_; }
@@ -78,16 +80,20 @@ private:
   bool split_printed_, had_lap_;
   steady_clock::time_point start_, last_lap_;
   unsigned last_line_len_;
+  const std::string dir_cat_emotes_ =
+      std::string(getenv("HOME")) + "/.config/zeitkatze/";
+  const std::string file_cat_emotes_ = "cats.txt";
   // how many decimals when formating seconds in Zeitkatze instance
   const unsigned precision_;
   bool enable_color_;
   const bool one_line_;
-  CatVector ReadCats(std::string cat_file = "cats.txt");
+  CatVector ReadCats();
   CatVector cats_emotes_default_{
       "=(^.^)=", "=(o.o)=", "=(^.^)\"", "=(x.x)=", "=(o.o)m", " (o,o) ",
       "=(0.0)=", "=(@.@)=", "=(*.*)=",  "=(-.-)=", "=(v.v)=", "=(o.O)=",
       "=[˙.˙]=", "=(~.~)=", "=(ˇ.ˇ)=",  "=(=.=)="};
-  CatVector cat_emotes_{std::move(ReadCats("cats.txt"))};
+  CatVector cat_emotes_{std::move(ReadCats())};
+  bool reset_cat_emote_file_{false};
   // output the laps in one line instead of a scrolling screen
   // methods
   void PrintTime(const CatIndex cat_index, const Color color);
