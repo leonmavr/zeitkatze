@@ -90,6 +90,6 @@ int main(int argc, char **argv) {
 
   color_enabled = argColorEnabled;
   auto z = std::make_unique<Zeitkatze>(color_enabled, argPrecision, argOneLine);
-  z->run();
+  z->Run();
   return 0;
 }
