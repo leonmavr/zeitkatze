@@ -21,13 +21,13 @@ using std::setw;
 using std::chrono::duration;
 using std::chrono::duration_cast;
 
-void Zeitkatze::print_time(const CatIndex cat_index, const Color color) {
+void Zeitkatze::PrintTime(const CatIndex cat_index, const Color color) {
   steady_clock::time_point now(steady_clock::now());
   std::stringstream sbuf;
   sbuf << Color::Cat_hold << cat_emotes_[cat_index] << Color::Cat_hold << "   "
-       << color << format_seconds(elapsed()) << Color::Normal << "  ("
+       << color << FormatSeconds(Elapsed()) << Color::Normal << "  ("
        << Color::Split_lap
-       << format_seconds(
+       << FormatSeconds(
               duration_cast<duration<double>>(now - last_lap_).count())
        << Color::Normal << ")";
   std::string &&line = sbuf.str();
@@ -39,7 +39,7 @@ void Zeitkatze::print_time(const CatIndex cat_index, const Color color) {
   last_line_len_ = line.size();
 }
 
-void Zeitkatze::print_current_time() {
+void Zeitkatze::PrintCurrentTime() {
   if (!one_line_) {
     if (split_printed_) {
       std::cout << std::endl;
@@ -48,11 +48,11 @@ void Zeitkatze::print_current_time() {
   }
   std::stringstream sbuf;
   sbuf << Color::Cat << cat_emotes_[0] << "   " << Color::Running
-       << format_seconds(elapsed()) << Color::Normal;
+       << FormatSeconds(Elapsed()) << Color::Normal;
   if (had_lap_) {
     auto current_lap =
         duration_cast<duration<double>>(steady_clock::now() - last_lap_);
-    sbuf << "  (" << Color::Running_lap << format_seconds(current_lap.count())
+    sbuf << "  (" << Color::Running_lap << FormatSeconds(current_lap.count())
          << Color::Normal << ") <- LAP";
   }
   std::string &&line = sbuf.str();
@@ -61,13 +61,13 @@ void Zeitkatze::print_current_time() {
   last_line_len_ = line.size();
 }
 
-double Zeitkatze::elapsed() {
+double Zeitkatze::Elapsed() {
   duration<double> time_span =
       duration_cast<duration<double>>(steady_clock::now() - start_);
   return time_span.count();
 }
 
-std::string Zeitkatze::format_seconds(double seconds) {
+std::string Zeitkatze::FormatSeconds(double seconds) {
   double full_seconds = floor(seconds);
   double fractional_seconds = seconds - full_seconds;
   double minutes = floor(full_seconds / 60.0);
@@ -84,16 +84,16 @@ std::string Zeitkatze::format_seconds(double seconds) {
   return oss.str();
 }
 
-CatIndex Zeitkatze::some_cat_index() {
-  return static_cast<CatIndex>(elapsed() * 100) % (cat_emotes_.size() - 2) + 1;
+CatIndex Zeitkatze::SomeCatIndex() {
+  return static_cast<CatIndex>(Elapsed() * 100) % (cat_emotes_.size() - 2) + 1;
 }
 
-void Zeitkatze::reset_laps() {
+void Zeitkatze::ResetLaps() {
   last_lap_ = steady_clock::now();
   had_lap_ = false;
 }
 
-void Zeitkatze::init(bool enable_color) {
+void Zeitkatze::Init(bool enable_color) {
   color_enabled = enable_color;
   char *color_env = getenv("ZEITKATZE_COLOR");
   if (color_env != nullptr && std::string(color_env) == "0")
@@ -112,7 +112,7 @@ void Zeitkatze::init(bool enable_color) {
   }
 }
 
-void Zeitkatze::run() {
+void Zeitkatze::Run() {
   pollfd fds[] = {{STDIN_FILENO, POLLIN, 0}};
   unsigned char x = 0;
   auto clearScreen = []() { std::cout << "\x1b[H\x1b[J" << std::flush; };
@@ -125,10 +125,10 @@ void Zeitkatze::run() {
         case '\r':
           if (one_line_)
             clearScreen();
-          print_split_time();
+          PrintSplitTime();
           break;
         case 'r':
-          reset_laps();
+          ResetLaps();
           break;
         case 4: // ^D
         case 'q':
@@ -137,29 +137,29 @@ void Zeitkatze::run() {
       }
     }
     if (!one_line_) {
-      if (elapsed() - last_interrupt_ > kExitTimeout_)
-        print_current_time();
+      if (Elapsed() - last_interrupt_ > kExitTimeout_)
+        PrintCurrentTime();
     }
 
     if (interrupted) { // if we press Ctr+C^ twice with less time than
                        // kExitTimeout_ between them
-      if (elapsed() - last_interrupt_ < kExitTimeout_) {
+      if (Elapsed() - last_interrupt_ < kExitTimeout_) {
         running_ = false;
         print_newline_ = true;
       } else {
-        print_split_time();
+        PrintSplitTime();
       }
-      last_interrupt_ = elapsed();
+      last_interrupt_ = Elapsed();
       interrupted = false;
     }
   }
   if (print_newline_)
     std::cout << std::endl;
-  print_end_time();
+  PrintEndTime();
   std::cout << std::endl;
 }
 
-CatVector Zeitkatze::read_cats(std::string cat_file) {
+CatVector Zeitkatze::ReadCats(std::string cat_file) {
   std::ifstream file(cat_file);
   CatVector ret;
   if (file.is_open()) {

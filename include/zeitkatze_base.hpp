@@ -3,8 +3,8 @@
 
 class ZeitkatzeBase {
 public:
-  virtual void init(bool enable_color) = 0;
-  virtual void run() = 0;
+  virtual void Init(bool enable_color) = 0;
+  virtual void Run() = 0;
   virtual ~ZeitkatzeBase() {}
 };
 
