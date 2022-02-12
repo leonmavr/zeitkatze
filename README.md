@@ -39,8 +39,11 @@ It supports the following command line options
 | -n              | --no-color                |  None         | On      |Disables colors when formatting the times on the terminal                                 |   
 | -p              | --precision               |  integer      | 2       |How many decimal places to show when measuring time                                       | 
 | -o              | --one-line                |  None         | Off     |Whether or not to print the output in one line - in this case only prints lap times       | 
+| -h              | --help                    |  None         | Off     |Print usage instructions and exit                                                         | 
 
-It also supports configuration via the environment variable `ZEITKATZE_COLOR`. Note that the option `-n` or `--no-color` overrides this variable. If `ZEITKATZE_COLOR` is set to 0 (e.g. by adding `ZEITKATZE_COLOR=0` in your rc), then colors are disabled. 
+Other features:
+* It also supports configuration via the environment variable `ZEITKATZE_COLOR`. Note that the option `-n` or `--no-color` overrides this variable. If `ZEITKATZE_COLOR` is set to 0 (e.g. by adding `ZEITKATZE_COLOR=0` in your rc), then colors are disabled.
+* You can define custom cat emotes at `~/.config/zeitkatze/cats.txt`. This file is created by default and can be overwritten. For a nicer output, make sure that all cats take the same number of characters.
 
 ### Future ideas
 - [x] Measure seconds with custom precision
