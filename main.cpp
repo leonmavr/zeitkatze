@@ -73,7 +73,7 @@ int main(int argc, char **argv) {
     return !std::string(*arg).compare(str);
   };
   while (--argc > 0) {
-    // on/off specifiers 
+    // on/off specifiers
     if (argEqual(arg, "-n") || argEqual(arg, "--no-color"))
       arg_color_enabled = false;
     if (argEqual(arg, "-o") || argEqual(arg, "--one-line"))
@@ -84,8 +84,8 @@ int main(int argc, char **argv) {
     }
     // specifiers followed by argument
     if (argEqual(arg, "-p") || argEqual(arg, "--precision")) {
-        arg_precision = std::stoi(std::string(*++arg));
-        argc--;
+      arg_precision = std::stoi(std::string(*++arg));
+      argc--;
     }
     arg++;
   }
