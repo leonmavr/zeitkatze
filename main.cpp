@@ -68,7 +68,7 @@ int main(int argc, char **argv) {
   bool arg_color_enabled = true;
   int arg_precision = 2;
   bool arg_one_line = false;
-  char **arg = argv+1; // program name is at index 0
+  char **arg = argv + 1; // program name is at index 0
   auto argEqual = [](char **arg, const std::string &str) -> bool {
     return !std::string(*arg).compare(str);
   };
@@ -78,7 +78,7 @@ int main(int argc, char **argv) {
     if (argEqual(arg, "-p") || argEqual(arg, "--precision")) {
       if (argc >= 1) {
         arg_precision = std::stoi(std::string(*++arg));
-        }
+      }
     }
     if (argEqual(arg, "-o") || argEqual(arg, "--one-line"))
       arg_one_line = true;
@@ -90,7 +90,8 @@ int main(int argc, char **argv) {
   }
 
   color_enabled = arg_color_enabled;
-  auto z = std::make_unique<Zeitkatze>(color_enabled, arg_precision, arg_one_line);
+  auto z =
+      std::make_unique<Zeitkatze>(color_enabled, arg_precision, arg_one_line);
   z->Run();
   return 0;
 }

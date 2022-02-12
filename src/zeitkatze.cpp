@@ -178,7 +178,7 @@ CatVector Zeitkatze::ReadCats() {
 }
 
 void Zeitkatze::ResetEmotes() {
-    std::filesystem::create_directory(dir_cat_emotes_);
+  std::filesystem::create_directory(dir_cat_emotes_);
   std::string cat_filepath = dir_cat_emotes_ + file_cat_emotes_;
   std::fstream file_to;
   file_to.open(cat_filepath, std::ios::out | std::ios::trunc);
