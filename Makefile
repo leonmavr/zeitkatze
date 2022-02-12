@@ -4,16 +4,17 @@
 CC = g++
 EXEC = zeitkatze 
 SRC_DIR = src
-INCL_DIR = include 
 # make sure submodules (if they exist) in the include dir are included too
+INCL_DIR = include 
 CFLAGS = -O3 -std=c++17 -I$(INCL_DIR) -Wall
 LDFLAGS = 
-SOURCES = $(SRC_DIR)/zeitkatze.cpp main.cpp
+SOURCES = $(wildcard src/*cpp) \
+	main.cpp	
 OBJECTS = $(SOURCES:%.cpp=%.o)
 RM = rm -rf
 
 ###################################################
-# project                                         #
+# project development                             #
 ###################################################
 all: $(EXEC)
 
