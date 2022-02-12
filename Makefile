@@ -33,7 +33,7 @@ clean:
 ###################################################
 # release
 ###################################################
-PREFIX = /usr/local
+PREFIX = /usr
 
 .PHONY: install
 install: $(EXEC) 
