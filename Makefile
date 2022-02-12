@@ -29,3 +29,17 @@ $(EXEC): $(OBJECTS)
 clean:
 	$(RM) $(OBJECTS) 
 	$(RM) $(EXEC)
+
+###################################################
+# release
+###################################################
+PREFIX = /usr/local
+
+.PHONY: install
+install: $(EXEC) 
+	mkdir -p $(DESTDIR)$(PREFIX)/bin
+	cp $< $(DESTDIR)$(PREFIX)/bin/$(EXEC)
+
+.PHONY: uninstall
+uninstall:
+	$(RM) $(DESTDIR)$(PREFIX)/bin/$(EXEC)
