@@ -45,8 +45,8 @@ Other features:
 * You can define custom cat emotes at `~/.config/zeitkatze/cats.txt`. This file is created by default and can be overwritten. For a nicer output, make sure that all cats take the same number of characters (you can pad with spaces if necessary).
 
 <p float="left">
-  <img src="https://raw.githubusercontent.com/leonmavr/zeitkatze/master/assets/demo.gif" width="500" />
-	<img src="https://raw.githubusercontent.com/leonmavr/zeitkatze/master/assets/demo_one_line.gif" width="500" />
+  <img src="https://raw.githubusercontent.com/leonmavr/zeitkatze/master/assets/demo.gif" width="450" />
+	<img src="https://raw.githubusercontent.com/leonmavr/zeitkatze/master/assets/demo_one_line.gif" width="450" />
 </p>
 
 ### Future ideas
