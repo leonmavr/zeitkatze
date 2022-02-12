@@ -16,19 +16,30 @@ and if you quit (hitting ctrl-d, or ctrl-c twice in succession, or q), zeitkatze
 exits. You can measure a new split time (or "lap time") by pressing ctrl-c once or by hitting Enter.
 
 
-## Compilation and usage
+## Compilation, installation and usage
+To execute any of the following steps,
+it's assumed that you're in the root directory (same directory as the Makefile).  
+
 To compile:
 ```
-cd zeitkatze
 make
 ```
 To clean:
 ```
 make clean
 ```
-You can use it by simply running the executable. It accepts certain command line options described in the table below.
+You can use it by simply running the executable.
+It accepts certain command line options described in the relevant table below.
 ```
 ./zeitkatze
+```
+To install:
+```
+sudo make install
+```
+To uninstall:
+```
+sudo make uninstall
 ```
 
 | Short specifier | Long specifier            | Argument type | Default | Description                                                                              |
