@@ -65,22 +65,23 @@ int main(int argc, char **argv) {
       "\t-- r = Reset current lap\n\n";
 
   // TODO: write an arg parser class
-  bool argColorEnabled = true;
-  int argPrecision = 2;
-  bool argOneLine = false;
-  char **arg = argv;
+  bool arg_color_enabled = true;
+  int arg_precision = 2;
+  bool arg_one_line = false;
+  char **arg = argv+1; // program name is at index 0
   auto argEqual = [](char **arg, const std::string &str) -> bool {
     return !std::string(*arg).compare(str);
   };
-  while (--argc > 0) {
+  while (--argc > 1) {
     if (argEqual(arg, "-n") || argEqual(arg, "--no-color"))
-      argColorEnabled = false;
+      arg_color_enabled = false;
     if (argEqual(arg, "-p") || argEqual(arg, "--precision")) {
-      if (argc >= 1)
-        argPrecision = std::stoi(std::string(*++arg));
+      if (argc >= 1) {
+        arg_precision = std::stoi(std::string(*++arg));
+        }
     }
     if (argEqual(arg, "-o") || argEqual(arg, "--one-line"))
-      argOneLine = true;
+      arg_one_line = true;
     if (argEqual(arg, "-h") || argEqual(arg, "--help")) {
       std::cout << instructions;
       return 0;
@@ -88,8 +89,8 @@ int main(int argc, char **argv) {
     arg++;
   }
 
-  color_enabled = argColorEnabled;
-  auto z = std::make_unique<Zeitkatze>(color_enabled, argPrecision, argOneLine);
+  color_enabled = arg_color_enabled;
+  auto z = std::make_unique<Zeitkatze>(color_enabled, arg_precision, arg_one_line);
   z->Run();
   return 0;
 }
