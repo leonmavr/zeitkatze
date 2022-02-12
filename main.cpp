@@ -72,19 +72,20 @@ int main(int argc, char **argv) {
   auto argEqual = [](char **arg, const std::string &str) -> bool {
     return !std::string(*arg).compare(str);
   };
-  while (--argc > 1) {
+  while (--argc > 0) {
+    // on/off specifiers 
     if (argEqual(arg, "-n") || argEqual(arg, "--no-color"))
       arg_color_enabled = false;
-    if (argEqual(arg, "-p") || argEqual(arg, "--precision")) {
-      if (argc >= 1) {
-        arg_precision = std::stoi(std::string(*++arg));
-      }
-    }
     if (argEqual(arg, "-o") || argEqual(arg, "--one-line"))
       arg_one_line = true;
     if (argEqual(arg, "-h") || argEqual(arg, "--help")) {
       std::cout << instructions;
       return 0;
+    }
+    // specifiers followed by argument
+    if (argEqual(arg, "-p") || argEqual(arg, "--precision")) {
+        arg_precision = std::stoi(std::string(*++arg));
+        argc--;
     }
     arg++;
   }
