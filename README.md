@@ -30,7 +30,6 @@ You can use it by simply running the executable. Colors are enabled by default a
 ```
 ./zeitkatze
 ```
-<img src="https://raw.githubusercontent.com/leonmavr/zeitkatze/master/assets/demo.gif" height="275" />
 
 It supports the following command line options
 
@@ -44,6 +43,11 @@ It supports the following command line options
 Other features:
 * It also supports configuration via the environment variable `ZEITKATZE_COLOR`. Note that the option `-n` or `--no-color` overrides this variable. If `ZEITKATZE_COLOR` is set to 0 (e.g. by adding `ZEITKATZE_COLOR=0` in your rc), then colors are disabled.
 * You can define custom cat emotes at `~/.config/zeitkatze/cats.txt`. This file is created by default and can be overwritten. For a nicer output, make sure that all cats take the same number of characters.
+
+<p float="left">
+  <img src="https://raw.githubusercontent.com/leonmavr/zeitkatze/master/assets/demo.gif" width="500" />
+	<img src="https://raw.githubusercontent.com/leonmavr/zeitkatze/master/assets/demo_one_line.gif" width="500" />
+</p>
 
 ### Future ideas
 - [x] Measure seconds with custom precision
