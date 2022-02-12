@@ -6,7 +6,7 @@ EXEC = zeitkatze
 SRC_DIR = src
 INCL_DIR = include 
 # make sure submodules (if they exist) in the include dir are included too
-CFLAGS = -std=c++17 -I$(INCL_DIR) -Wall
+CFLAGS = -O3 -std=c++17 -I$(INCL_DIR) -Wall
 LDFLAGS = 
 SOURCES = $(SRC_DIR)/zeitkatze.cpp main.cpp
 OBJECTS = $(SOURCES:%.cpp=%.o)
