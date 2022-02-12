@@ -86,6 +86,7 @@ private:
   // how many decimals when formating seconds in Zeitkatze instance
   const unsigned precision_;
   bool enable_color_;
+  // output the laps in one line instead of a scrolling screen
   const bool one_line_;
   CatVector ReadCats();
   CatVector cats_emotes_default_{
@@ -94,11 +95,28 @@ private:
       "=[˙.˙]=", "=(~.~)=", "=(ˇ.ˇ)=",  "=(=.=)="};
   CatVector cat_emotes_{std::move(ReadCats())};
   bool reset_cat_emote_file_{false};
-  // output the laps in one line instead of a scrolling screen
+
   // methods
+  /**
+   * @brief Prints total time and current lap time including interrupt
+   *
+   * @param cat_index A index to CatVector, preferably random
+   * @param color A Color enum type that determines the terminal color
+   */
   void PrintTime(const CatIndex cat_index, const Color color);
+  /**
+   * @brief Prints total time and lap time formatted according to the class's
+   * options
+   */
   void PrintCurrentTime();
   double Elapsed();
+  /**
+   * @brief Formats seconds into minutes, seconds, and fractions of second
+   *
+   * @param seconds (double) seconds
+   *
+   * @return A string that contains all of the above mentioned in brief
+   */
   std::string FormatSeconds(double seconds);
   CatIndex SomeCatIndex();
   void PrintSplitTime() { PrintTime(SomeCatIndex(), Color::Split); }
