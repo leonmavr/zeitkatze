@@ -44,7 +44,7 @@ sudo make uninstall
 
 | Short specifier | Long specifier            | Argument type | Default | Description                                                                              |
 |:--------------- |:--------------------------|:--------------|:--------|:-----------------------------------------------------------------------------------------|
-| -n              | --no-color                |  None         | On      |Disables colors when formatting the times on the terminal                                 |   
+| -n              | --no-color                |  None         | Off     |Disables colors when formatting the times on the terminal                                 |   
 | -p              | --precision               |  integer      | 2       |How many decimal places to show when measuring time                                       | 
 | -o              | --one-line                |  None         | Off     |Whether or not to print the output in one line - in this case only prints lap times       | 
 | -h              | --help                    |  None         | Off     |Print usage instructions and exit                                                         | 
