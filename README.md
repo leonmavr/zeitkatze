@@ -15,8 +15,14 @@ It continuously updates the total elapsed time display, you can hit ctrl-c once 
 and if you quit (hitting ctrl-d, or ctrl-c twice in succession, or q), zeitkatze prints the total time and
 exits. You can measure a new split time (or "lap time") by pressing ctrl-c once or by hitting Enter.
 
+## 2. Installation
+If you run Arch, you can install it from the AUR, e.g. via the `yay` package manager:
+```
+yay -S zeitkatze
+```
+Otherwise, you can compile it and install it manually.
 
-## 2. Compilation, installation and usage
+## 3. Compilation and manual installation
 To execute any of the following steps,
 it's assumed that you're in the root directory (same directory as the Makefile).  
 
@@ -29,7 +35,7 @@ To clean:
 make clean
 ```
 You can use it by simply running the executable.
-It accepts certain command line options described in the relevant table below.
+It accepts certain command line options described in section 4 -- Usage.
 ```
 ./zeitkatze
 ```
@@ -41,6 +47,8 @@ To uninstall:
 ```
 sudo make uninstall
 ```
+
+## 4. Usage
 
 | Short specifier | Long specifier            | Argument type | Default | Description                                                                              |
 |:--------------- |:--------------------------|:--------------|:--------|:-----------------------------------------------------------------------------------------|
@@ -64,7 +72,7 @@ you can reset it by calling the method `ResetEmotes()` on your `Zeitkatze` insta
     <img src="https://raw.githubusercontent.com/leonmavr/zeitkatze/master/assets/demo_one_line.gif" width="450" />
 </p>
 
-### 3. Future ideas
+### 5. Future ideas
 - [x] Measure seconds with custom precision
 - [x] Read cat emoticons from file
 - [ ] Write times to file in a compact format
@@ -73,12 +81,13 @@ you can reset it by calling the method `ResetEmotes()` on your `Zeitkatze` insta
 - [ ] Fancier output with ncurses
 - [ ] Unit test it by sending signals/keystrokes to the app
 
-### 4. Issues
+### 6. Issues
 * It is written in C++17 with support for the (standard) filesystem library.
-Therefore experimental filesystem, e.g. in C++14m will not work.
+Therefore experimental filesystem, e.g. in C++14, will not work.
 This is an issue to work on in the future.
 
-### 5. Bugs
+
+### 7. Bugs
 * After running zeitkatze in a terminal, it changes its properties.
 A side-effect of this is that if you try to enter a user password in
 same terminal, it will not work: `sudo: no password was provided
