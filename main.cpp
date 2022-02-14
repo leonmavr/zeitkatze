@@ -76,14 +76,13 @@ int main(int argc, char **argv) {
     // on/off specifiers
     if (argEqual(arg, "-n") || argEqual(arg, "--no-color"))
       arg_color_enabled = false;
-    if (argEqual(arg, "-o") || argEqual(arg, "--one-line"))
+    else if (argEqual(arg, "-o") || argEqual(arg, "--one-line"))
       arg_one_line = true;
-    if (argEqual(arg, "-h") || argEqual(arg, "--help")) {
+    else if (argEqual(arg, "-h") || argEqual(arg, "--help")) {
       std::cout << instructions;
       return 0;
-    }
-    // specifiers followed by argument
-    if (argEqual(arg, "-p") || argEqual(arg, "--precision")) {
+    } else if (argEqual(arg, "-p") || argEqual(arg, "--precision")) {
+      // specifiers followed by argument
       arg_precision = std::stoi(std::string(*++arg));
       argc--;
     }
