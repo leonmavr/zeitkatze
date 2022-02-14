@@ -32,7 +32,7 @@ enum class Color {
 extern std::ostream &operator<<(std::ostream &oss, Color c);
 
 //-----------------------------------------------------------------------------
-// Method definitions
+// Class interface
 class Zeitkatze : public ZeitkatzeBase {
 public:
   Zeitkatze()
