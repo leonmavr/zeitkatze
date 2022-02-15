@@ -56,7 +56,7 @@ Zeitkatze::Zeitkatze(bool enable_color, unsigned precision, bool one_line)
 
 // method definitions
 void Zeitkatze::PrintTime(const CatIndex cat_index, const Color color) {
-  steady_clock::time_point now(steady_clock::now());
+  steady_clock::time_point now{steady_clock::now()};
   std::stringstream sbuf;
   sbuf << Color::Cat_hold << cat_emotes_[cat_index] << Color::Cat_hold << "   "
        << color << FormatSeconds(Elapsed()) << Color::Normal << "  ("
