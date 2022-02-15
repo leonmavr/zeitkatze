@@ -25,14 +25,27 @@ yay -S zeitkatze
 ```
 
 ### 2.2 Manual installation
+#### 2.2.1 Installation
 Make sure you're in the root directory (same level as the `Makefile`). Then you
 can install it directly with one command. It will compile the project for you
-and install it at `$PREFIX/bin`, where `$PREFIX` is defined in the `Makefile` --
-typically `/usr`. Execute:
+and install it at `$PREFIX/bin`, where `PREFIX` is defined in the `Makefile` --
+typically `/usr`. Execute `sudo make install` to install it if you've cloned the
+repo and you're at the root level. Alternatively, open up and terminal and paste
+the following to install it:
 ```
+cd `mktemp -d`
+wget https://github.com/leonmavr/zeitkatze/archive/refs/heads/master.zip
+unzip master.zip
+cd zeitkatze-master
 sudo make install
+
+#### 2.2.2 Uninstallation
 ```
-Uninstalling it is similar:
+To uninstall it manually you can execute the following from any terminal:
+```
+sudo rm `which zeitkatze`
+```
+Or from the root level of the repository:
 ```
 sudo make uninstall
 ```
@@ -65,6 +78,7 @@ You can execute the script `scripts/clang_format.sh` to format all source files.
 | -n              | --no-color                |  None         | Off     |Disables colors when formatting the times on the terminal                                 |   
 | -p              | --precision               |  integer      | 2       |How many decimal places to show when measuring time                                       | 
 | -o              | --one-line                |  None         | Off     |Whether or not to print the output in one line - in this case only prints lap times       | 
+| -r              | --reset-emotes            |  None         | Off     |If true, re-writes (and overwrites )the default cat emotes to file `~/.config/zeitkatze/cats.txt`      | 
 | -h              | --help                    |  None         | Off     |Print usage instructions and exit                                                         | 
 
 Other features/tips:
@@ -86,7 +100,7 @@ you can reset it by calling the method `ResetEmotes()` on your `Zeitkatze` insta
 - [x] Measure seconds with custom precision
 - [x] Read cat emoticons from file
 - [ ] Write times to file in a compact format
-- [ ] Add a command line specifier that calls ResetMethod() on Zeitkatze
+- [x] Add a command line specifier that calls ResetMethod() on Zeitkatze
 - [x] Option for one-line output
 - [ ] Animated cats with multithreading?
 - [ ] Unicode support
@@ -94,10 +108,7 @@ you can reset it by calling the method `ResetEmotes()` on your `Zeitkatze` insta
 - [ ] Unit test it by sending signals/keystrokes to the app
 
 ### 6. Issues
-* It is written in C++17 with support for the (standard) filesystem library.
-Therefore experimental filesystem, e.g. in C++14, will not work.
-This is an issue to work on in the future.
-
+* None at the moment
 
 ### 7. Bugs
 * After running zeitkatze in a terminal, it changes its properties.
