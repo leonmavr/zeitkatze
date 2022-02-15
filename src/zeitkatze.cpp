@@ -21,6 +21,35 @@ using std::setw;
 using std::chrono::duration;
 using std::chrono::duration_cast;
 
+// constructor definitions
+Zeitkatze::Zeitkatze()
+    : split_printed_(false), start_(steady_clock::now()), last_lap_(start_),
+      last_line_len_(0), precision_(2), enable_color_(true), one_line_(false) {
+  Init(enable_color_);
+}
+
+Zeitkatze::Zeitkatze(bool enable_color)
+    : split_printed_(false), start_(steady_clock::now()), last_lap_(start_),
+      last_line_len_(0), precision_(2), enable_color_(enable_color),
+      one_line_(false) {
+  Init(enable_color_);
+}
+
+Zeitkatze::Zeitkatze(bool enable_color, unsigned precision)
+    : split_printed_(false), start_(steady_clock::now()), last_lap_(start_),
+      last_line_len_(0), precision_(precision), enable_color_(enable_color),
+      one_line_(false) {
+  Init(enable_color_);
+}
+
+Zeitkatze::Zeitkatze(bool enable_color, unsigned precision, bool one_line)
+    : split_printed_(false), start_(steady_clock::now()), last_lap_(start_),
+      last_line_len_(0), precision_(precision), enable_color_(enable_color),
+      one_line_(one_line) {
+  Init(enable_color_);
+}
+
+// method definitions
 void Zeitkatze::PrintTime(const CatIndex cat_index, const Color color) {
   steady_clock::time_point now(steady_clock::now());
   std::stringstream sbuf;
