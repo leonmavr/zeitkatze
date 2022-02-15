@@ -16,15 +16,30 @@ and if you quit (hitting ctrl-d, or ctrl-c twice in succession, or q), zeitkatze
 exits. You can measure a new split time (or "lap time") by pressing ctrl-c once or by hitting Enter.
 
 ## 2. Installation
-If you run Arch, you can install it from the AUR, e.g. via the `yay` package manager:
+
+### 2.1 For Arch-based distros
+If you run an Arch-based distro (Arch, Manjaro, Artix, etc.), you can install it
+from the AUR, e.g. via the `yay` package wrapper:
 ```
 yay -S zeitkatze
 ```
-Otherwise, you can compile it and install it manually.
 
-## 3. Compilation and manual installation
-To execute any of the following steps,
-it's assumed that you're in the root directory (same directory as the Makefile).  
+### 2.2 Manual installation
+Make sure you're in the root directory (same level as the `Makefile`). Then you
+can install it directly with one command. It will compile the project for you
+and install it at `$PREFIX/bin`, where `$PREFIX` is defined in the `Makefile` --
+typically `/usr`. Execute:
+```
+sudo make install
+```
+Uninstalling it is similar:
+```
+sudo make uninstall
+```
+
+## 3. Development
+To execute any of the following steps, it's assumed that you're in the root
+directory (same directory as the `Makefile`).  
 
 To compile:
 ```
@@ -39,14 +54,9 @@ It accepts certain command line options described in section 4 -- Usage.
 ```
 ./zeitkatze
 ```
-To install:
-```
-sudo make install
-```
-To uninstall:
-```
-sudo make uninstall
-```
+Don't forget that the naming coding coding conventions follow the C++ Google
+standard ([example](https://github.com/chromium/chromium/blob/main/media/ffmpeg/ffmpeg_decoding_loop.h)) and the spacing and indentation convention the clang format.
+You can execute the script `scripts/clang_format.sh` to format all source files.
 
 ## 4. Usage
 
@@ -77,6 +87,7 @@ you can reset it by calling the method `ResetEmotes()` on your `Zeitkatze` insta
 - [x] Read cat emoticons from file
 - [ ] Write times to file in a compact format
 - [x] Option for one-line output
+- [ ] Animated cats with multithreading?
 - [ ] Unicode support
 - [ ] Fancier output with ncurses
 - [ ] Unit test it by sending signals/keystrokes to the app
