@@ -86,6 +86,7 @@ you can reset it by calling the method `ResetEmotes()` on your `Zeitkatze` insta
 - [x] Measure seconds with custom precision
 - [x] Read cat emoticons from file
 - [ ] Write times to file in a compact format
+- [ ] Add a command line specifier that calls ResetMethod() on Zeitkatze
 - [x] Option for one-line output
 - [ ] Animated cats with multithreading?
 - [ ] Unicode support
