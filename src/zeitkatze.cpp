@@ -13,7 +13,6 @@
 #include <string>    // string
 #include <termios.h> // struct termios, tcgetattr()
 #include <unistd.h>  // read()
-#include <vector>    // vector<T>
 #if __cplusplus >= 201703L
 #include <filesystem> // create_directory
 namespace fs = std::filesystem;
