@@ -38,9 +38,9 @@ wget https://github.com/leonmavr/zeitkatze/archive/refs/heads/master.zip
 unzip master.zip
 cd zeitkatze-master
 sudo make install
+```
 
 #### 2.2.2 Uninstallation
-```
 To uninstall it manually you can execute the following from any terminal:
 ```
 sudo rm `which zeitkatze`
