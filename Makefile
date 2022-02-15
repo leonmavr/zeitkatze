@@ -6,9 +6,9 @@ EXEC = zeitkatze
 SRC_DIR = src
 # make sure submodules (if they exist) in the include dir are included too
 INCL_DIR = include 
-CFLAGS = -O3 -std=c++17 -I$(INCL_DIR) -Wall
-LDFLAGS = 
-SOURCES = $(wildcard src/*cpp) \
+CFLAGS = -I$(INCL_DIR) -O3 -std=c++14 -Wall
+LDFLAGS = -lstdc++fs
+SOURCES = $(wildcard $(SRC_DIR)/*cpp) \
 	main.cpp	
 OBJECTS = $(SOURCES:%.cpp=%.o)
 RM = rm -rf
@@ -25,13 +25,12 @@ $(EXEC): $(OBJECTS)
 	$(CC) $(CFLAGS) -c $^ -o $@
 
 .PHONY: clean
-
 clean:
 	$(RM) $(OBJECTS) 
 	$(RM) $(EXEC)
 
 ###################################################
-# release
+# release                                         #
 ###################################################
 PREFIX = /usr
 

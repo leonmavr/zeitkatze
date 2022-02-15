@@ -1,20 +1,26 @@
 #include "zeitkatze.hpp"
-#include <atomic>     // atomic<T>
-#include <chrono>     // chrono::duration, chrono::duration_cast
-#include <cmath>      // pow(), floor()
-#include <csignal>    // signal()
-#include <cstdlib>    // getenv
-#include <fcntl.h>    //fcntl()
-#include <filesystem> // std::filesystem::absolute, C++17+
-#include <fstream>    // ifstream
-#include <iomanip>    // setw(), setfill()
-#include <iostream>   // ostream()
-#include <memory>     // make_unique()
-#include <poll.h>     // poll()
-#include <string>     // string
-#include <termios.h>  // struct termios, tcgetattr()
-#include <unistd.h>   // read()
-#include <vector>     // vector<T>
+#include <atomic>    // atomic<T>
+#include <chrono>    // chrono::duration, chrono::duration_cast
+#include <cmath>     // pow(), floor()
+#include <csignal>   // signal()
+#include <cstdlib>   // getenv
+#include <fcntl.h>   // fcntl()
+#include <fstream>   // ifstream
+#include <iomanip>   // setw(), setfill()
+#include <iostream>  // ostream()
+#include <memory>    // make_unique()
+#include <poll.h>    // poll()
+#include <string>    // string
+#include <termios.h> // struct termios, tcgetattr()
+#include <unistd.h>  // read()
+#include <vector>    // vector<T>
+#if __cplusplus >= 201703L
+#include <filesystem> // create_directory
+namespace fs = std::filesystem;
+#elif __cplusplus >= 201103L
+#include <experimental/filesystem> // create_directory
+namespace fs = std::experimental::filesystem;
+#endif
 
 using std::setfill;
 using std::setw;
@@ -198,7 +204,7 @@ CatVector Zeitkatze::ReadCats() {
       ret.push_back(line);
     file.close();
   } else {
-    std::filesystem::create_directory(dir_cat_emotes_);
+    fs::create_directory(dir_cat_emotes_);
     ResetEmotes();
     // write cats to file ~/.config/zeitkatze
     return cats_emotes_default_;
@@ -207,7 +213,7 @@ CatVector Zeitkatze::ReadCats() {
 }
 
 void Zeitkatze::ResetEmotes() {
-  std::filesystem::create_directory(dir_cat_emotes_);
+  fs::create_directory(dir_cat_emotes_);
   std::string cat_filepath = dir_cat_emotes_ + file_cat_emotes_;
   std::fstream file_to;
   file_to.open(cat_filepath, std::ios::out | std::ios::trunc);
