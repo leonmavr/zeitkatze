@@ -40,9 +40,6 @@ public:
   Zeitkatze(bool enable_color);
   Zeitkatze(bool enable_color, unsigned precision);
   Zeitkatze(bool enable_color, unsigned precision, bool one_line);
-#if 0
-
-#endif
   // implemented interface
   virtual void Init(bool enable_color);
   virtual void Run();
