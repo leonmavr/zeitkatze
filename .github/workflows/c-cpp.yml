@@ -9,7 +9,7 @@ on:
 jobs:
   all:
 
-    runs-on: ubuntu-latest
+    runs-on: [ ubuntu-latest, ubuntu-18, ubuntu-16 ]
 
     steps:
     - uses: actions/checkout@v2
