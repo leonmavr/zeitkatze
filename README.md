@@ -1,5 +1,6 @@
 zeitkatze
 =========
+[![C/C++ CI](https://github.com/leonmavr/zeitkatze/actions/workflows/c-cpp.yml/badge.svg)](https://github.com/leonmavr/zeitkatze/actions/workflows/c-cpp.yml)
 
 Zeitkatze is time cat -- literally
 ```
