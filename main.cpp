@@ -61,6 +61,7 @@ int main(int argc, char **argv) {
       "\t-- Ctr + c = Split time/lap time\n "
       "\t-- Enter = Split time/lap time\n "
       "\t-- Ctr + d = Stop and exit\n"
+      "\t-- Ctr + c twice = Stop and exit\n"
       "\t-- q = Stop and exit\n"
       "\t-- r = Reset current lap\n\n";
 
@@ -68,6 +69,7 @@ int main(int argc, char **argv) {
   bool arg_color_enabled = true;
   int arg_precision = 2;
   bool arg_one_line = false;
+  bool arg_reset_emotes = false;
   char **arg = argv + 1; // program name is at index 0
   auto argEqual = [](char **arg, const std::string &str) -> bool {
     return !std::string(*arg).compare(str);
@@ -81,8 +83,11 @@ int main(int argc, char **argv) {
     else if (argEqual(arg, "-h") || argEqual(arg, "--help")) {
       std::cout << instructions;
       return 0;
-    } else if (argEqual(arg, "-p") || argEqual(arg, "--precision")) {
-      // specifiers followed by argument
+    } else if (argEqual(arg, "-r") || argEqual(arg, "--reset-emotes")) {
+      arg_reset_emotes = true;
+    }
+    // specifiers followed by argument
+    else if (argEqual(arg, "-p") || argEqual(arg, "--precision")) {
       arg_precision = std::stoi(std::string(*++arg));
       argc--;
     }
@@ -90,8 +95,15 @@ int main(int argc, char **argv) {
   }
 
   color_enabled = arg_color_enabled;
-  auto z =
+  auto zeitkatze =
       std::make_unique<Zeitkatze>(color_enabled, arg_precision, arg_one_line);
-  z->Run();
-  return 0;
+  if (!arg_reset_emotes) {
+    // do the work
+    zeitkatze->Run();
+    return 0;
+  } else {
+    // reset text file with emotes and exit
+    zeitkatze->ResetEmotes();
+    return 0;
+  }
 }
