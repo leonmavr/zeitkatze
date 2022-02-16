@@ -25,8 +25,8 @@ jobs:
       - name: codecheck
         run: ./scripts/clang_format.sh --test
         
-  build-16:
-      runs-on: ubuntu-latest
+  build-14:
+      runs-on: ubuntu-14
    
       steps:
       - uses: actions/checkout@v2
