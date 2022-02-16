@@ -7,7 +7,7 @@ on:
       - 'README*'
       - 'assets/**'
   pull_request:
-    branches: [ master, dev, CI ]
+    branches: [ master, dev ]
     paths-ignore:
       - 'README*'
       - 'assets/**'
@@ -15,18 +15,6 @@ on:
 jobs:
   build-latest:
       runs-on: ubuntu-latest
-   
-      steps:
-      - uses: actions/checkout@v2
-      - name: compile
-        run: make
-      - name: install
-        run: sudo make install
-      - name: codecheck
-        run: ./scripts/clang_format.sh --test
-        
-  build-14:
-      runs-on: ubuntu-14.04
    
       steps:
       - uses: actions/checkout@v2
