@@ -2,22 +2,31 @@ name: C/C++ CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, dev, CI ]
     paths-ignore:
       - 'README*'
       - 'assets/**'
   pull_request:
-    branches: [ master ]
+    branches: [ master, dev, CI ]
     paths-ignore:
       - 'README*'
       - 'assets/**'
 
 jobs:
-  build:
-      strategy:
-        matrix:
-          os: [ubuntu-latest, ubuntu-16.04]
-      runs-on: ${{ matrix.os }}
+  build-latest:
+      runs-on: ubuntu-latest
+   
+      steps:
+      - uses: actions/checkout@v2
+      - name: compile
+        run: make
+      - name: install
+        run: sudo make install
+      - name: codecheck
+        run: ./scripts/clang_format.sh --test
+        
+  build-16:
+      runs-on: ubuntu-latest
    
       steps:
       - uses: actions/checkout@v2
