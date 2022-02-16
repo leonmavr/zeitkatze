@@ -45,6 +45,7 @@ sudo make install
 To uninstall it manually you can execute the following from any terminal:
 ```
 sudo rm `which zeitkatze`
+rm -rf ~/.config/zeitkatze
 ```
 Or from the root level of the repository:
 ```
@@ -79,7 +80,7 @@ You can execute the script `scripts/clang_format.sh` to format all source files.
 | -n              | --no-color                |  None         | Off     |Disables colors when formatting the times on the terminal                                 |   
 | -p              | --precision               |  integer      | 2       |How many decimal places to show when measuring time                                       | 
 | -o              | --one-line                |  None         | Off     |Whether or not to print the output in one line - in this case only prints lap times       | 
-| -r              | --reset-emotes            |  None         | Off     |If true, re-writes (and overwrites )the default cat emotes to file `~/.config/zeitkatze/cats.txt`      | 
+| -r              | --reset-emotes            |  None         | Off     |If true, re-writes (and overwrites) the default cat emotes at file `~/.config/zeitkatze/cats.txt`                                                                                                                                     | 
 | -h              | --help                    |  None         | Off     |Print usage instructions and exit                                                         | 
 
 Other features/tips:
