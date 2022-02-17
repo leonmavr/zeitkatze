@@ -127,7 +127,7 @@ void Zeitkatze::ResetLaps() {
   had_lap_ = false;
 }
 
-void Zeitkatze::Init(bool enable_color) {
+void Zeitkatze::Init(const bool enable_color) {
   color_enabled = enable_color;
   char *color_env = getenv("ZEITKATZE_COLOR");
   if (color_env != nullptr && std::string(color_env) == "0")

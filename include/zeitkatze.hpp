@@ -43,7 +43,7 @@ public:
   Zeitkatze(bool enable_color, unsigned precision, bool one_line);
   ~Zeitkatze() { TerminalSetter::ResetTerminal(); }
   // implemented abstract methods
-  virtual void Init(bool enable_color);
+  virtual void Init(const bool enable_color);
   virtual void Run();
   // other public methods
   void ResetEmotes();
