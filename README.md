@@ -1,6 +1,7 @@
 zeitkatze
 =========
 [![C/C++ CI](https://github.com/leonmavr/zeitkatze/actions/workflows/c-cpp.yml/badge.svg)](https://github.com/leonmavr/zeitkatze/actions/workflows/c-cpp.yml)
+[![AUR version](https://img.shields.io/aur/version/zeitkatze)](https://aur.archlinux.org/packages/zeitkatze/)
 
 Zeitkatze is time cat -- literally
 ```
