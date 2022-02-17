@@ -42,3 +42,5 @@ install: $(EXEC)
 .PHONY: uninstall
 uninstall:
 	$(RM) $(DESTDIR)$(PREFIX)/bin/$(EXEC)
+	# remove configs too
+	$(RM) ~/.configs/zeitkatze
