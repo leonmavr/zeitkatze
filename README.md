@@ -2,6 +2,8 @@ zeitkatze
 =========
 [![C/C++ CI](https://github.com/leonmavr/zeitkatze/actions/workflows/c-cpp.yml/badge.svg)](https://github.com/leonmavr/zeitkatze/actions/workflows/c-cpp.yml)
 [![AUR version](https://img.shields.io/aur/version/zeitkatze)](https://aur.archlinux.org/packages/zeitkatze/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 
 Zeitkatze is time cat -- literally
 ```
