@@ -1,11 +1,12 @@
 #ifndef ZEITKATZE_HPP
 #define ZEITKATZE_HPP
 #include "zeitkatze_base.hpp"
-#include <atomic> // atomic<T>
-#include <chrono> // chrono::duration, chrono::duration_cast
-#include <memory> // make_unique()
-#include <string> // string
-#include <vector> // vector<T>
+#include <atomic>    // atomic<T>
+#include <chrono>    // chrono::duration, chrono::duration_cast
+#include <memory>    // make_unique()
+#include <string>    // string
+#include <termios.h> // struct termios, tcsetattr()
+#include <vector>    // vector<T>
 
 //-----------------------------------------------------------------------------
 // External variable declarations
@@ -35,11 +36,12 @@ extern std::ostream &operator<<(std::ostream &oss, Color c);
 // Class interface
 class Zeitkatze : public ZeitkatzeBase {
 public:
-  // constructors
+  // constructors/destructors
   Zeitkatze();
   Zeitkatze(bool enable_color);
   Zeitkatze(bool enable_color, unsigned precision);
   Zeitkatze(bool enable_color, unsigned precision, bool one_line);
+  ~Zeitkatze() { ResetTerminal(); }
   // implemented interface
   virtual void Init(bool enable_color);
   virtual void Run();
@@ -76,6 +78,8 @@ private:
       "=[˙.˙]=", "=(~.~)=", "=(ˇ.ˇ)=",  "=(=.=)="};
   CatVector cat_emotes_{std::move(ReadCats())};
   bool reset_cat_emote_file_{false};
+  // terminal properties
+  struct termios tio_;
 
   // methods
   /**
@@ -103,6 +107,8 @@ private:
   void PrintSplitTime() { PrintTime(SomeCatIndex(), Color::Split); }
   void PrintEndTime() { PrintTime(cat_emotes_.size() - 1, Color::Total); }
   void ResetLaps();
+  // resets terminal properties - properties set in Init method
+  inline void ResetTerminal() { tcsetattr(1, TCSANOW, &tio_); }
 };
 
 #endif /* ZEITKATZE_HPP */

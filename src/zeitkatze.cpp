@@ -136,6 +136,8 @@ void Zeitkatze::Init(bool enable_color) {
   signal(SIGINT, interruptCallback);
   fcntl(STDIN_FILENO, F_SETFL, O_NONBLOCK);
 
+  // store current terminal properties for later
+  tcgetattr(1, &tio_);
   // setup the terminal
   struct termios tio;
   if (tcgetattr(1, &tio) == 0) {
