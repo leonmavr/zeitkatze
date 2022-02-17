@@ -32,7 +32,7 @@ Make sure you're in the root directory (same level as the `Makefile`). Then you
 can install it directly with one command. It will compile the project for you
 and install it at `$PREFIX/bin`, where `PREFIX` is defined in the `Makefile` --
 typically `/usr`. Execute `sudo make install` to install it if you've cloned the
-repo and you're at the root level. Alternatively, open up and terminal and paste
+repo and you're at the root level. Alternatively, open up a terminal and paste
 the following to install it:
 ```
 cd `mktemp -d`
@@ -45,8 +45,7 @@ sudo make install
 #### 2.2.2 Uninstallation
 To uninstall it manually you can execute the following from any terminal:
 ```
-sudo rm `which zeitkatze`
-rm -rf ~/.config/zeitkatze
+sudo rm `which zeitkatze` && rm -rf ~/.config/zeitkatze
 ```
 Or from the root level of the repository:
 ```
