@@ -10,6 +10,19 @@ Zeitkatze is time cat -- literally
 =(^.^)= =(ˇ.ˇ)= =(o.o)m =(*.*)= =(^.^)= =(ˇ.ˇ)= =(o.o)m =(*.*)= =(^.^)= =(ˇ.ˇ)= =(o.o)m =(*.*)=
 ```
 
+## Table of contents
+
+1. [About](https://github.com/leonmavr/zeitkatze#1-about)
+2. [Installataion](https://github.com/leonmavr/zeitkatze#1-installation)
+    1. [For Arch-based distros](https://github.com/leonmavr/zeitkatze#21-for-arch-based-distros)
+    2. [Manual installation](https://github.com/leonmavr/zeitkatze#22-manual-installation)
+3. [Development](https://github.com/leonmavr/zeitkatze#3-development)
+4. [Usage](https://github.com/leonmavr/zeitkatze#4-usage)
+5. [Future ideas](https://github.com/leonmavr/zeitkatze#5-future-ideas)
+6. [Issues](https://github.com/leonmavr/zeitkatze#6-issues)
+7. [Bugs](https://github.com/leonmavr/zeitkatze#7-bugs)
+			
+
 ## 1. About
 What's the simplest stopwatch in a linux console?
 Well, just type `time cat` to start, and push ctrl-c to stop.
