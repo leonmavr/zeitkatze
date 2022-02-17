@@ -8,6 +8,8 @@
 // define external variables and operator
 bool color_enabled{true};
 std::atomic<bool> interrupted{false};
+// this callback is later bound to `interrupted` by the SIGINT signal
+void interruptCallback(int) { interrupted = true; }
 
 std::ostream &operator<<(std::ostream &oss, Color c) {
   if (color_enabled) {
@@ -42,8 +44,6 @@ std::ostream &operator<<(std::ostream &oss, Color c) {
   }
   return oss;
 }
-
-void interruptCallback(int) { interrupted = true; }
 
 int main(int argc, char **argv) {
   std::string instructions =
