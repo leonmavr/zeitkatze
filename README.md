@@ -113,7 +113,7 @@ you can reset it by calling the method `ResetEmotes()` on your `Zeitkatze` insta
 * None at the moment
 
 ### 7. Bugs
-* After running zeitkatze in a terminal, it changes its properties.
+* ~~After running zeitkatze in a terminal, it changes its properties.
 A side-effect of this is that if you try to enter a user password in
 same terminal, it will not work: `sudo: no password was provided
-sudo: a password is required`
+sudo: a password is required`~~ Fixed as of (691b1de)[https://github.com/leonmavr/zeitkatze/commit/f3c87b11023dc8c4818dbc054d1690cffb2f04c4]
