@@ -1,4 +1,5 @@
 #include "zeitkatze.hpp"
+#include "terminal_setter.hpp"
 #include <atomic>    // atomic<T>
 #include <chrono>    // chrono::duration, chrono::duration_cast
 #include <cmath>     // pow(), floor()
@@ -11,7 +12,6 @@
 #include <memory>    // make_unique()
 #include <poll.h>    // poll()
 #include <string>    // string
-#include <termios.h> // struct termios, tcgetattr()
 #include <unistd.h>  // read()
 #if __cplusplus >= 201703L
 #include <filesystem> // create_directory
@@ -137,15 +137,8 @@ void Zeitkatze::Init(bool enable_color) {
   fcntl(STDIN_FILENO, F_SETFL, O_NONBLOCK);
 
   // store current terminal properties for later
-  tcgetattr(1, &tio_);
   // setup the terminal
-  struct termios tio;
-  if (tcgetattr(1, &tio) == 0) {
-    tio.c_lflag &= ~(ICANON);
-    tio.c_cc[VMIN] = 0;
-    tio.c_cc[VTIME] = 0;
-    tcsetattr(1, TCSANOW, &tio);
-  }
+  SetTerminal();
 }
 
 void Zeitkatze::Run() {
