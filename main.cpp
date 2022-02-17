@@ -105,5 +105,5 @@ int main(int argc, char **argv) {
     // reset text file with emotes and exit
     zeitkatze->ResetEmotes();
   }
-return 0;
+  return 0;
 }

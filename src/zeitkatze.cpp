@@ -1,18 +1,18 @@
 #include "zeitkatze.hpp"
 #include "terminal_setter.hpp"
-#include <atomic>    // atomic<T>
-#include <chrono>    // chrono::duration, chrono::duration_cast
-#include <cmath>     // pow(), floor()
-#include <csignal>   // signal()
-#include <cstdlib>   // getenv
-#include <fcntl.h>   // fcntl()
-#include <fstream>   // ifstream
-#include <iomanip>   // setw(), setfill()
-#include <iostream>  // ostream()
-#include <memory>    // make_unique()
-#include <poll.h>    // poll()
-#include <string>    // string
-#include <unistd.h>  // read()
+#include <atomic>   // atomic<T>
+#include <chrono>   // chrono::duration, chrono::duration_cast
+#include <cmath>    // pow(), floor()
+#include <csignal>  // signal()
+#include <cstdlib>  // getenv
+#include <fcntl.h>  // fcntl()
+#include <fstream>  // ifstream
+#include <iomanip>  // setw(), setfill()
+#include <iostream> // ostream()
+#include <memory>   // make_unique()
+#include <poll.h>   // poll()
+#include <string>   // string
+#include <unistd.h> // read()
 #if __cplusplus >= 201703L
 #include <filesystem> // create_directory
 namespace fs = std::filesystem;
@@ -136,9 +136,8 @@ void Zeitkatze::Init(bool enable_color) {
   signal(SIGINT, interruptCallback);
   fcntl(STDIN_FILENO, F_SETFL, O_NONBLOCK);
 
-  // store current terminal properties for later
-  // setup the terminal
-  SetTerminal();
+  // setup the terminal for user inputs
+  TerminalSetter::SetTerminal();
 }
 
 void Zeitkatze::Run() {

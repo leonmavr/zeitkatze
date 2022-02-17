@@ -1,12 +1,12 @@
 #ifndef ZEITKATZE_HPP
 #define ZEITKATZE_HPP
-#include "zeitkatze_base.hpp"
 #include "terminal_setter.hpp"
-#include <atomic>    // atomic<T>
-#include <chrono>    // chrono::duration, chrono::duration_cast
-#include <memory>    // make_unique()
-#include <string>    // string
-#include <vector>    // vector<T>
+#include "zeitkatze_base.hpp"
+#include <atomic> // atomic<T>
+#include <chrono> // chrono::duration, chrono::duration_cast
+#include <memory> // make_unique()
+#include <string> // string
+#include <vector> // vector<T>
 
 //-----------------------------------------------------------------------------
 // External variable declarations
@@ -41,7 +41,7 @@ public:
   Zeitkatze(bool enable_color);
   Zeitkatze(bool enable_color, unsigned precision);
   Zeitkatze(bool enable_color, unsigned precision, bool one_line);
-  ~Zeitkatze() { ResetTerminal(); }
+  ~Zeitkatze() { TerminalSetter::ResetTerminal(); }
   // implemented abstract methods
   virtual void Init(bool enable_color);
   virtual void Run();
