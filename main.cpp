@@ -65,7 +65,8 @@ int main(int argc, char **argv) {
       "\t-- q = Stop and exit\n"
       "\t-- r = Reset current lap\n\n";
 
-  // TODO: write an arg parser class
+  // variables prefixed by arg_ are set by the CLI arguments
+  // and then passed to the Zeitkatze constructor
   bool arg_color_enabled = true;
   int arg_precision = 2;
   bool arg_one_line = false;
@@ -100,10 +101,9 @@ int main(int argc, char **argv) {
   if (!arg_reset_emotes) {
     // do the work
     zeitkatze->Run();
-    return 0;
   } else {
     // reset text file with emotes and exit
     zeitkatze->ResetEmotes();
-    return 0;
   }
+return 0;
 }
