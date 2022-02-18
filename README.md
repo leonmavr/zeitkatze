@@ -43,12 +43,14 @@ yay -S zeitkatze
 
 ### 2.2 Manual installation
 #### 2.2.1 Installation
-Make sure you're in the root directory (same level as the `Makefile`). Then you
-can install it directly with one command. It will compile the project for you
-and install it at `$PREFIX/bin`, where `PREFIX` is defined in the `Makefile` --
-typically `/usr`. Execute `sudo make install` to install it if you've cloned the
-repo and you're at the root level. Alternatively, open up a terminal and paste
-the following to install it:
+If you have cloned the repo and you're in the same directory as the `Makefile`,
+you can install `zeitkatze` as:
+```
+sudo make install
+```
+It will be written in directory `$PREFIX/bin`, where `PREFIX` is defined in
+`Makefile` typically as the `/usr` directory. Otherwise, you can install it
+by pasting the following commands in your terminal:
 ```
 cd `mktemp -d`
 wget https://github.com/leonmavr/zeitkatze/archive/refs/heads/master.zip
