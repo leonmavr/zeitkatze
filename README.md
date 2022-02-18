@@ -43,14 +43,14 @@ yay -S zeitkatze
 
 ### 2.2 Manual installation
 #### 2.2.1 Installation
-If you have cloned the repo and you're in the same directory as the `Makefile`,
-you can install `zeitkatze` as:
+You can clone the repo and install it manually as follows:
 ```
+git clone https://github.com/leonmavr/zeitkatze.git
+cd zeitkatze
 sudo make install
 ```
-It will be written in directory `$PREFIX/bin`, where `PREFIX` is defined in
-`Makefile` typically as the `/usr` directory. Otherwise, you can install it
-by pasting the following commands in your terminal:
+Alternatively, you can download the repo as a zip file and
+install it by pasting the following commands in your terminal:
 ```
 cd `mktemp -d`
 wget https://github.com/leonmavr/zeitkatze/archive/refs/heads/master.zip
@@ -58,6 +58,7 @@ unzip master.zip
 cd zeitkatze-master
 sudo make install
 ```
+It will be written in `/usr/bin/zeitkatze`.
 
 #### 2.2.2 Uninstallation
 To uninstall it manually you can execute the following from any terminal:
