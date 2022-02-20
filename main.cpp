@@ -47,7 +47,7 @@ std::ostream &operator<<(std::ostream &oss, Color c) {
 
 int main(int argc, char **argv) {
   std::string instructions =
-      "Zeitkatze\n\n"
+      "Zeitkatze v0.1.4\n\n"
       "\ttime cat -- literally\n\n"
       "Arguments:\n"
       "[-n | --no-color] (default true) If passed, disables colours\n"
