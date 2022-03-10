@@ -43,13 +43,7 @@ yay -S zeitkatze
 
 ### 2.2 Manual installation
 #### 2.2.1 Installation
-You can clone the repo and install it manually as follows:
-```
-git clone https://github.com/leonmavr/zeitkatze.git
-cd zeitkatze
-sudo make install
-```
-Alternatively, you can download the repo as a zip file and
+You can download the repo as a zip file and
 install it by pasting the following commands in your terminal:
 ```
 cd `mktemp -d`
